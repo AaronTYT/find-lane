@@ -55,10 +55,6 @@ def region_of_interest(image):
     masked_image = cv2.bitwise_and(image, mask)
     return masked_image
 
-# image = cv2.imread('road.png')
-# lane_image = np.copy(image)
-
-
 cap = cv2.VideoCapture("video.mp4")
 while(cap.isOpened()):
     _, frame = cap.read()
@@ -69,3 +65,7 @@ while(cap.isOpened()):
     line_image = display_lines(frame, averaged_lines)   
     combo_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     cv2.imshow("result", combo_image)
+    if cv2.waitKey(1) == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
