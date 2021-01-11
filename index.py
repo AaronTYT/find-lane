@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def canny(image):
     #convert rgb to gray scale.
-    gray = cv2.cvtColor(lane_image, cv2.COLOR_RGB2GRAY)
+    gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 
     #reduce noise by applying GaussianBlur to detect proper edges/lines
     blur = cv2.GaussianBlur(gray, (5,5),0)
