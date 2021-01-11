@@ -2,6 +2,14 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
+def make_coordinates(image, line_parameters):
+    slope, intercept = line_parameters
+    y1 = image.shape[0]
+    y2 = int(y1*(3/5))
+    x1 = int((y1 - intercept) /slope)
+    x2 = int((y2 - intercept) /slope)
+    return np.array([x1, y1, x2, y2])
+
 def averaged_slope_intercept(image, lines):
     left_fit = []
     right_fit = []
@@ -15,6 +23,9 @@ def averaged_slope_intercept(image, lines):
         else:
             right_fit.append((slope, intercept))
     left_fit_average = np.average(left_fit,axis=0)
+    right_fit_average = np.average(right_fit, axis=0)
+    left_line = make_coordinates(image, left_fit_average)
+    right_line = make_coordinates(image, right_fit_average)
 
 def canny(image):
     #convert rgb to gray scale.
