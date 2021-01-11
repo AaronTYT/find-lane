@@ -18,12 +18,14 @@ def region_of_interest(image):
     triangle = np.array([[(200, height), (1100, height), (550, 250)]])
     mask = np.zeros_like(image)
     cv2.fillPoly(mask, triangle, 255)
-    return mask
+    masked_image = cv2.bitwise_and(image, mask)
+    return masked_image
 
 image = cv2.imread('road.png')
 lane_image = np.copy(image)
 canny = canny(lane_image)
+cropped_image = region_of_interest(canny)
 
 #show the image from matplotlib library file.
-plt.imshow(region_of_interest(canny))
-plt.show()
+cv2.imshow("result", region_of_interest(canny))
+cv2.waitKey(0)
