@@ -13,10 +13,17 @@ def canny(image):
     canny = cv2.Canny(blur, 50, 150)
     return canny
 
+def region_of_interest(image):
+    height = image.shape[0]
+    triangle = np.array([[(200, height), (1100, height), (550, 250)]])
+    mask = np.zeros_like(image)
+    cv2.fillPoly(mask, triangle, 255)
+    return mask
+
 image = cv2.imread('road.png')
 lane_image = np.copy(image)
 canny = canny(lane_image)
 
 #show the image from matplotlib library file.
-plt.imshow(canny)
+plt.imshow(region_of_interest(canny))
 plt.show()
