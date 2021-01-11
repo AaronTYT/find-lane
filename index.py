@@ -15,7 +15,7 @@ def averaged_slope_intercept(image, lines):
     right_fit = []
     for line in lines:
         x1, y1, x2, y2 = line.reshape(4)
-        parameters = np.ployfit((x1, x2),(y1, y2),1)
+        parameters = np.polyfit((x1, x2),(y1, y2),1)
         slope = parameters[0]
         intercept = parameters[1]
         if slope < 0:
@@ -61,7 +61,7 @@ canny = canny(lane_image)
 cropped_image = region_of_interest(canny)
 lines = cv2.HoughLinesP(cropped_image, 2, np.pi/180, 100,  np.array([]), minLineLength=40, maxLineGap=5)
 averaged_lines = averaged_slope_intercept(lane_image, lines)
-line_image = display_lines(lane_image, lines)   
+line_image = display_lines(lane_image, averaged_lines)   
 combo_image = cv2.addWeighted(lane_image, 0.8, line_image, 1, 1)
 cv2.imshow("result", combo_image)
 cv2.waitKey(0)
