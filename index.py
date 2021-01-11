@@ -26,6 +26,7 @@ def averaged_slope_intercept(image, lines):
     right_fit_average = np.average(right_fit, axis=0)
     left_line = make_coordinates(image, left_fit_average)
     right_line = make_coordinates(image, right_fit_average)
+    return np.array([left_line, right_line])
 
 def canny(image):
     #convert rgb to gray scale.
