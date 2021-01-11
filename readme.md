@@ -2,6 +2,7 @@
 Python packages required for this project:
 Python package Name  | Python CLI pip download
 ------------- | -------------
+OpenCV | pip install opencv-python
 Numpy  | pip install numpy
 Matplotlib  | pip install matplotlib
 
